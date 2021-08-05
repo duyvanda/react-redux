@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { petIncrement, petDecrement } from "./actions";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const petCounter = useSelector((state) => state.petCounter);
+	const petFavorite = useSelector((state) => state.petFavorite);
+	const dispatch = useDispatch();
+	return (
+		<div className="App">
+			<h1>Welcome to React Redux Crash Course 2021</h1>
+			<button onClick={() => dispatch(petIncrement(2))}>Add pet</button>
+			<button onClick={() => dispatch(petDecrement())}>Remove pet</button>
+			<h1>Pet counter {petCounter}</h1>
+			<h2>Number of favorite pets so far {petFavorite}</h2>
+		</div>
+	);
 }
 
 export default App;
